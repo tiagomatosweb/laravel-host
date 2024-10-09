@@ -2,7 +2,7 @@
 @section('body-class', 'register-page')
 @section('content')
     <div class="register-box">
-        <div class="register-logo"> <a href="../index2.html"><b>Admin</b>LTE</a> </div>
+        <div class="register-logo"> <a href="{{ route('login') }}"><b>Admin</b>LTE</a> </div>
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="register-box-msg">Register a new membership</p>
@@ -42,8 +42,8 @@
                     <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Register</button> </div>
                 </form>
 
-                <p class="mt-2 text-center"> <a href="login.html" class="text-center">
-                        I already have a membership
+                <p class="mt-2 text-center"> <a href="{{ route('login') }}" class="text-center">
+                        Back to login
                     </a> </p>
             </div>
         </div>
