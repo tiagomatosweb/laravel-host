@@ -53,6 +53,11 @@ class UserController extends Controller
             ->with('status', 'Usuário editado com sucesso');
     }
 
+    public function updateProfile(User $user, Request $request)
+    {
+        dd($request->all());
+    }
+
     public function destroy(User $user)
     {
         $user->delete();
