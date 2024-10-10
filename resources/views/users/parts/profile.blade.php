@@ -16,9 +16,14 @@
                     name="type"
                     class="form-control @error('type') is-invalid @enderror"
                 >
-                    <option value="PJ">PJ</option>
-                    <option value="PF">PF</option>
+                    @foreach(['PJ', 'PF'] as $type)
+                        <option
+                            value="{{ $type }}"
+                            @selected(old('type') === $type || $user?->profile?->type === $type)
+                        >{{ $type }}</option>
+                    @endforeach
                 </select>
+
                 @error('type')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -31,7 +36,7 @@
                 <input
                     type="text"
                     name="address"
-                    value="{{ old('address') }}"
+                    value="{{ old('address') ?? $user?->profile?->address }}"
                     class="form-control @error('address') is-invalid @enderror"
                 >
                 @error('address')
