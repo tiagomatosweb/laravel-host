@@ -1,6 +1,6 @@
 <div class="card">
     <form
-        action="{{ route('users.updateInterests', $user->id) }}"
+        action="{{ route('users.updateRoles', $user->id) }}"
         method="POST"
     >
         @csrf
@@ -17,8 +17,8 @@
                         type="checkbox"
                         value="{{ $role->id }}"
                         name="roles[]"
+                        @checked(in_array($role->name, $user->roles->pluck('name')->toArray()))
                     >
-{{--                        @checked(in_array($item, $user->interests->pluck('name')->toArray()))--}}
                     <label class="form-check-label">
                         {{ $role->name }}
                     </label>

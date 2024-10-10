@@ -88,6 +88,18 @@ class UserController extends Controller
             ->with('status', 'Usuário editado com sucesso.');
     }
 
+    public function updateRoles(User $user, Request $request)
+    {
+        $input = $request->validate([
+            'roles' => 'required|array',
+        ]);
+
+        $user->roles()->sync($input['roles']);
+
+        return back()
+            ->with('status', 'Usuário editado com sucesso.');
+    }
+
     public function destroy(User $user)
     {
         $user->delete();
