@@ -16,7 +16,7 @@
             <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
-            <th scope="col">Ação</th>
+            <th scope="col" class="text-end">Ação</th>
         </tr>
         </thead>
         <tbody>
@@ -25,12 +25,12 @@
                 <th scope="row">{{ $user->id }}</th>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>
+                <td class="text-end">
                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Editar</a>
                     <form
                         action="{{ route('users.destroy', $user->id) }}"
                         method="POST"
-
+                        class="d-inline-flex"
                     >
                         @csrf
                         @method('DELETE')
@@ -41,4 +41,6 @@
         @endforeach
         </tbody>
     </table>
+
+    {{ $users->links() }}
 @endsection
