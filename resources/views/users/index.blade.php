@@ -21,7 +21,7 @@
                 type="text"
                 name="keyword"
                 class="form-control"
-                value="{{request()?->keyword}}"
+                value="{{ request()?->keyword }}"
                 placeholder="Pesquise por nome ou email"
             >
             <button type="submit" class="btn btn-primary">Pesquisar</button>
@@ -44,16 +44,21 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td class="text-end">
-                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                    <form
-                        action="{{ route('users.destroy', $user->id) }}"
-                        method="POST"
-                        class="d-inline-flex"
-                    >
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                    </form>
+                    @can('edit', \App\Models\User::class)
+                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                    @endcan
+
+                    @can('destroy', \App\Models\User::class)
+                        <form
+                            action="{{ route('users.destroy', $user->id) }}"
+                            method="POST"
+                            class="d-inline-flex"
+                        >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    @endcan
                 </td>
             </tr>
         @endforeach
