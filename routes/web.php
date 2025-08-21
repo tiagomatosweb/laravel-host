@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/', function () {
@@ -20,4 +21,9 @@ Route::middleware(['auth'])->group(function() {
 
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
+});
+
+
+Route::get('/deploy', function() {
+    Artisan::call('app:deploy');
 });
