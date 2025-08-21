@@ -36,15 +36,6 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
         server-dir: /public_html/
-        exclude: |
-          /.git
-          /.github
-          /node_modules/**
-          /tests
-          /storage
-          /storage
-          .env
-          .env.example
 
     - name: Deploy url
       run: curl -X GET https://host.tiagomatos.com/deploy
